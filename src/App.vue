@@ -1,15 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+ <div>
+  <h1>Snail Reaction Timer</h1>
+  <button @click="start" :disabled="isPlaying"> Lets Play</button>
+  <Block v-if="isPlaying" :delay="delay"/>
+  <input type="text" >
+ </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Block from './components/Block.vue'
 
 export default {
   name: 'App',
+  data(){
+    return{
+      isPlaying: false,
+      delay: null,
+    }
+    
+  },
   components: {
-    HelloWorld
+    Block
+  },
+  methods:{
+    start(){
+      this.delay = 2000 + Math.random() * 5000;
+      this.isPlaying = true
+
+    }
+    
   }
 }
 </script>
